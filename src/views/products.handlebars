@@ -1,0 +1,32 @@
+<div>
+    <div class="container d-flex justify-content-center">
+        <h1>Hola {{dataUser.first_name}}! estos son los Productos</h1>
+    </div>
+    {{!-- <div class="container d-flex justify-content-center">
+        <p>Tenés el rol de {{dataUser.role}}</p>
+    </div> --}}
+    <div class="container d-flex justify-content-center">
+        <a href="http://localhost:8080/api/sessions/logout">No sos {{dataUser.first_name}}? Hacé click acá(Logout)</a>
+    </div>
+    <div class="container">
+        {{#each dataProducts.payload}}
+            <div class="product">
+                <p>ID: {{this._id}}</p>
+                <p>Producto: {{this.title}}</p>
+                <p>Descripción: {{this.description}}</p>
+                <p>Categoría: {{this.category}}</p>
+                <p>Precio: ${{this.price}}</p>
+                <p>Imagen: {{this.thumbnail}}</p>
+                <p>Código de producto: {{this.code}}</p>
+                <p>Stock: {{this.stock}}</p>
+                    <button>Agregar al carrito</button>
+            </div>
+        {{/each}}
+    </div>
+    {{#if dataProducts.hasPrevPage}}
+        <button><a href={{dataProducts.prevLink}}>Anterior</a></button>
+    {{/if}}
+    {{#if dataProducts.hasNextPage}}
+        <button><a href={{dataProducts.nextLink}}>Siguiente</a></button>
+    {{/if}}
+</div>
